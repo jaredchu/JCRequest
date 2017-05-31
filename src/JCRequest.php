@@ -13,45 +13,33 @@ use GuzzleHttp\Client;
 
 class JCRequest implements iJCRequest
 {
-    /**
-     * @var Client
-     */
-    public $client;
-
-    /**
-     * JCRequest constructor.
-     */
-    public function __construct()
+    public static function get($url, $headers = [], $params = [], $options = [])
     {
-        $this->client = new Client();
+        $client = new Client();
+        return new JCResponse($client->get($url));
     }
 
-    public function get($url, $headers = [], $params = [], $options = [])
-    {
-        return new JCResponse($this->client->get($url, []));
-    }
-
-    public function post($url, $headers, $params, $options)
+    public static function post($url, $headers, $params, $options)
     {
         // TODO: Implement post() method.
     }
 
-    public function put($url, $headers, $params, $options)
+    public static function put($url, $headers, $params, $options)
     {
         // TODO: Implement put() method.
     }
 
-    public function patch($url, $headers, $params, $options)
+    public static function patch($url, $headers, $params, $options)
     {
         // TODO: Implement patch() method.
     }
 
-    public function head($url, $headers, $params, $options)
+    public static function head($url, $headers, $params, $options)
     {
         // TODO: Implement head() method.
     }
 
-    public function delete($url, $headers, $params, $options)
+    public static function delete($url, $headers, $params, $options)
     {
         // TODO: Implement delete() method.
     }

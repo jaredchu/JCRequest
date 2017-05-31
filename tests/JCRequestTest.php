@@ -16,20 +16,14 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
      */
     private $url;
 
-    /**
-     * @var JCRequest
-     */
-    private $request;
-
     public function setUp()
     {
-        $this->request = new JCRequest();
         $this->url = 'http://google.com';
     }
 
     public function testGet()
     {
-        $response = $this->request->get($this->url);
+        $response = JCRequest::get($this->url);
         $this->assertEquals(200, $response->status());
         $this->assertNotEmpty($response->body());
     }

@@ -33,4 +33,9 @@ class JCResponse implements iJCResponse
     {
         return $this->response->getStatusCode();
     }
+
+    public function body()
+    {
+        return $this->response->getBody();
+    }
 }

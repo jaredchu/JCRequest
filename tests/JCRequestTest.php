@@ -29,6 +29,8 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
 
     public function testGet()
     {
-        $this->assertEquals(200, $this->request->get($this->url, [], [], [])->status());
+        $response = $this->request->get($this->url);
+        $this->assertEquals(200, $response->status());
+        $this->assertNotEmpty($response->body());
     }
 }

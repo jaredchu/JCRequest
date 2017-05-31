@@ -26,7 +26,7 @@ class JCRequest implements iJCRequest
         $this->client = new Client();
     }
 
-    public function get($url, $headers, $params, $options)
+    public function get($url, $headers = [], $params = [], $options = [])
     {
         return new JCResponse($this->client->get($url, []));
     }

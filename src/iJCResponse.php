@@ -12,4 +12,6 @@ namespace JC;
 interface iJCResponse
 {
     public function status();
+
+    public function body();
 }

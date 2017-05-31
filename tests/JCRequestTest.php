@@ -11,19 +11,20 @@ use JC\JCRequest;
 
 class JCRequestTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @var string
-     */
-    private $url;
-
-    public function setUp()
-    {
-        $this->url = 'http://google.com';
-    }
-
     public function testGet()
     {
-        $response = JCRequest::get($this->url);
+        $url = 'https://httpbin.org/get';
+
+        $response = JCRequest::get($url);
+        $this->assertEquals(200, $response->status());
+        $this->assertNotEmpty($response->body());
+    }
+
+    public function testPost()
+    {
+        $url = 'https://httpbin.org/post';
+
+        $response = JCRequest::post($url, [], ['hello' => 'world']);
         $this->assertEquals(200, $response->status());
         $this->assertNotEmpty($response->body());
     }

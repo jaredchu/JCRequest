@@ -9,35 +9,49 @@
 namespace JC;
 
 
+use GuzzleHttp\Client;
+
 class JCRequest implements iJCRequest
 {
+    /**
+     * @var Client
+     */
+    public $client;
 
-    public function get()
+    /**
+     * JCRequest constructor.
+     */
+    public function __construct()
     {
-        // TODO: Implement get() method.
+        $this->client = new Client();
     }
 
-    public function post()
+    public function get($url, $headers, $params, $options)
+    {
+        return new JCResponse($this->client->get($url, []));
+    }
+
+    public function post($url, $headers, $params, $options)
     {
         // TODO: Implement post() method.
     }
 
-    public function put()
+    public function put($url, $headers, $params, $options)
     {
         // TODO: Implement put() method.
     }
 
-    public function patch()
+    public function patch($url, $headers, $params, $options)
     {
         // TODO: Implement patch() method.
     }
 
-    public function head()
+    public function head($url, $headers, $params, $options)
     {
         // TODO: Implement head() method.
     }
 
-    public function delete()
+    public function delete($url, $headers, $params, $options)
     {
         // TODO: Implement delete() method.
     }

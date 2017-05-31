@@ -1,0 +1,29 @@
+{
+  "name": "jaredchu/jc-request",
+  "description": "Another Guzzle wrapper",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jared Chu",
+      "email": "me@jaredchu.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "JC\\": "src"
+    }
+  },
+  "keywords": [
+    "request",
+    "http",
+    "client",
+    "guzzle"
+  ]
+}

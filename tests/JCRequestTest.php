@@ -24,7 +24,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
     {
         $url = 'https://httpbin.org/post';
 
-        $response = JCRequest::post($url, [], ['hello' => 'world']);
+        $response = JCRequest::post($url, ['hello' => 'world']);
         $this->assertEquals(200, $response->status());
         $this->assertNotEmpty($response->body());
     }

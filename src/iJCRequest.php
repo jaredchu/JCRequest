@@ -11,13 +11,13 @@ namespace JC;
 
 interface iJCRequest
 {
-    public static function get($url, $headers, $params, $options);
+    public static function get($url, $params, $headers, $options);
 
-    public static function post($url, $headers, $params, $options);
+    public static function post($url, $params, $headers, $options);
 
-    public static function put($url, $headers, $params, $options);
+    public static function put($url, $params, $headers, $options);
 
-    public static function head($url, $headers, $params, $options);
+    public static function head($url, $params, $headers, $options);
 
-    public static function delete($url, $headers, $params, $options);
+    public static function delete($url, $params, $headers, $options);
 }

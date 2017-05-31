@@ -21,7 +21,7 @@ class JCRequest implements iJCRequest
      * @param array $options
      * @return JCResponse
      */
-    public static function get($url, $headers = [], $params = [], $options = [])
+    public static function get($url, $params = [], $headers = [], $options = [])
     {
         $finalUrl = static::manipulateUrl($url, $params);
 
@@ -31,7 +31,7 @@ class JCRequest implements iJCRequest
         ]));
     }
 
-    public static function post($url, $headers = [], $params = [], $options = [])
+    public static function post($url, $params = [], $headers = [], $options = [])
     {
         $client = new Client();
         return new JCResponse($client->request('POST', $url, [
@@ -40,17 +40,17 @@ class JCRequest implements iJCRequest
         ]));
     }
 
-    public static function put($url, $headers, $params, $options)
+    public static function put($url, $params, $headers, $options)
     {
         // TODO: Implement put() method.
     }
 
-    public static function head($url, $headers, $params, $options)
+    public static function head($url, $params, $headers, $options)
     {
         // TODO: Implement head() method.
     }
 
-    public static function delete($url, $headers, $params, $options)
+    public static function delete($url, $params, $headers, $options)
     {
         // TODO: Implement delete() method.
     }

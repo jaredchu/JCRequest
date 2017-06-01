@@ -38,4 +38,9 @@ class JCResponse implements iJCResponse
     {
         return $this->response->getBody()->getContents();
     }
+
+    public function headers()
+    {
+        return $this->response->getHeaders();
+    }
 }

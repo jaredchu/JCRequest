@@ -14,4 +14,6 @@ interface iJCResponse
     public function status();
 
     public function body();
+
+    public function headers();
 }

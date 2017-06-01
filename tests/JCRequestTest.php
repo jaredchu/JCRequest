@@ -60,4 +60,70 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
         $this->assertEquals('application/json', $responseData->headers->{'Accept'});
     }
+
+    public function testPut()
+    {
+        $url = $this->baseUrl . '/put?a=1';
+
+        $response = JCRequest::put($url, $this->params, $this->headers);
+        $this->assertEquals(200, $response->status());
+
+        $responseData = json_decode($response->body());
+        $this->assertEquals('https://httpbin.org/put?a=1', $responseData->url);
+        $this->assertEquals(1, $responseData->args->a);
+        $this->assertEquals(2, $responseData->form->b);
+        $this->assertEquals(3, $responseData->form->c);
+
+        $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
+        $this->assertEquals('application/json', $responseData->headers->{'Accept'});
+    }
+
+    public function testPatch()
+    {
+        $url = $this->baseUrl . '/patch?a=1';
+
+        $response = JCRequest::patch($url, $this->params, $this->headers);
+        $this->assertEquals(200, $response->status());
+
+        $responseData = json_decode($response->body());
+        $this->assertEquals('https://httpbin.org/patch?a=1', $responseData->url);
+        $this->assertEquals(1, $responseData->args->a);
+        $this->assertEquals(2, $responseData->form->b);
+        $this->assertEquals(3, $responseData->form->c);
+
+        $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
+        $this->assertEquals('application/json', $responseData->headers->{'Accept'});
+    }
+
+    public function testDelete()
+    {
+        $url = $this->baseUrl . '/delete?a=1';
+
+        $response = JCRequest::delete($url, $this->params, $this->headers);
+        $this->assertEquals(200, $response->status());
+
+        $responseData = json_decode($response->body());
+        $this->assertEquals('https://httpbin.org/delete?a=1', $responseData->url);
+        $this->assertEquals(1, $responseData->args->a);
+        $this->assertEquals(2, $responseData->form->b);
+        $this->assertEquals(3, $responseData->form->c);
+
+        $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
+        $this->assertEquals('application/json', $responseData->headers->{'Accept'});
+    }
+
+    public function testHead()
+    {
+        $url = $this->baseUrl . '/headers';
+
+        $response = JCRequest::head($url, $this->params, $this->headers);
+        $this->assertEquals(200, $response->status());
+        $this->assertEmpty($response->body());
+
+        $responseHeaders = $response->headers();
+        $this->assertEquals('keep-alive', $responseHeaders['Connection'][0]);
+        $this->assertEquals('application/json', $responseHeaders['Content-Type'][0]);
+        $this->assertEquals('Flask', $responseHeaders['X-Powered-By'][0]);
+        $this->assertEquals(144, $responseHeaders['Content-Length'][0]);
+    }
 }

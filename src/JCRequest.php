@@ -42,26 +42,36 @@ class JCRequest implements iJCRequest
         ]);
     }
 
-    public static function put($url, $params, $headers, $options)
+    public static function put($url, $params = [], $headers = [], $options = [])
     {
-        // TODO: Implement put() method.
+        return static::request(Method::PUT, $url, [
+            'headers' => $headers,
+            'form_params' => $params
+        ]);
     }
 
-    public static function patch($url, $params, $headers, $options)
+    public static function patch($url, $params = [], $headers = [], $options = [])
     {
-        // TODO: Implement patch() method.
+        return static::request(Method::PATCH, $url, [
+            'headers' => $headers,
+            'form_params' => $params
+        ]);
     }
 
-    public static function head($url, $params, $headers, $options)
+    public static function delete($url, $params = [], $headers = [], $options = [])
     {
-        // TODO: Implement head() method.
+        return static::request(Method::DELETE, $url, [
+            'headers' => $headers,
+            'form_params' => $params
+        ]);
     }
 
-    public static function delete($url, $params, $headers, $options)
+    public static function head($url, $params = [], $headers = [], $options = [])
     {
-        // TODO: Implement delete() method.
+        return static::request(Method::HEAD, $url, [
+            'headers' => $headers,
+        ]);
     }
-
 
     /**
      * @param string $url

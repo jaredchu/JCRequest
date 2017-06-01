@@ -23,7 +23,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         ];
         $this->headers = [
             'User-Agent' => 'Jared Chu',
-            'Accept' => 'application/json',
+            'Accept' => 'application/json'
         ];
     }
 
@@ -53,7 +53,6 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
 
         $responseData = $response->json();
-        var_dump($responseData);
         $this->assertEquals('https://httpbin.org/post?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
@@ -127,5 +126,21 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('application/json', $responseHeaders['Content-Type'][0]);
         $this->assertEquals('Flask', $responseHeaders['X-Powered-By'][0]);
         $this->assertEquals(144, $responseHeaders['Content-Length'][0]);
+    }
+
+    public function testJson()
+    {
+        $url = $this->baseUrl . '/post?a=1';
+
+        $response = JCRequest::post($url, json_encode($this->params), $this->headers);
+        $this->assertEquals(200, $response->status());
+
+        $responseData = $response->json();
+        $this->assertEquals('https://httpbin.org/post?a=1', $responseData->url);
+        $this->assertEquals(1, $responseData->args->a);
+        $this->assertEquals('{"b":2,"c":"3"}', json_decode($responseData->data));
+
+        $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
+        $this->assertEquals('application/json', $responseData->headers->{'Accept'});
     }
 }

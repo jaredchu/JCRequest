@@ -17,12 +17,15 @@ class JCRequest implements iJCRequest
 {
     public static function request($method, $url, $options)
     {
-        if (isset($options['headers']['Content-Type']) &&
-            strpos($options['headers']['Content-Type'], 'application/json') !== false
-        ) {
-            if (isset($options['form_params'])) {
-                $options['json'] = $options['form_params'];
-                unset($options['form_params']);
+        if (isset($options['params'])) {
+            $params = $options['params'];
+            unset($options['params']);
+
+            if (is_array($params)) {
+                $options['form_params'] = $params;
+            }
+            if (is_string($params)) {
+                $options['json'] = $params;
             }
         }
 
@@ -36,46 +39,46 @@ class JCRequest implements iJCRequest
      * @param array $options
      * @return JCResponse
      */
-    public static function get($url, $params = [], $headers = [], $options = [])
+    public static function get($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::GET, static::manipulateUrl($url, $params), [
             'headers' => $headers
         ]);
     }
 
-    public static function post($url, $params = [], $headers = [], $options = [])
+    public static function post($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::POST, $url, [
             'headers' => $headers,
-            'form_params' => $params
+            'params' => $params
         ]);
     }
 
-    public static function put($url, $params = [], $headers = [], $options = [])
+    public static function put($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::PUT, $url, [
             'headers' => $headers,
-            'form_params' => $params
+            'params' => $params
         ]);
     }
 
-    public static function patch($url, $params = [], $headers = [], $options = [])
+    public static function patch($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::PATCH, $url, [
             'headers' => $headers,
-            'form_params' => $params
+            'params' => $params
         ]);
     }
 
-    public static function delete($url, $params = [], $headers = [], $options = [])
+    public static function delete($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::DELETE, $url, [
             'headers' => $headers,
-            'form_params' => $params
+            'params' => $params
         ]);
     }
 
-    public static function head($url, $params = [], $headers = [], $options = [])
+    public static function head($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::HEAD, $url, [
             'headers' => $headers,

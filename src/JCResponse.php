@@ -55,4 +55,9 @@ class JCResponse implements iJCResponse
     {
         return GuzzleHttp\json_decode($this->body());
     }
+
+    public function success()
+    {
+        return $this->response->getStatusCode() < 300;
+    }
 }

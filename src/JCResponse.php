@@ -36,6 +36,6 @@ class JCResponse implements iJCResponse
 
     public function body()
     {
-        return $this->response->getBody();
+        return $this->response->getBody()->getContents();
     }
 }

@@ -17,7 +17,11 @@ interface iJCRequest
 
     public static function put($url, $params, $headers, $options);
 
+    public static function patch($url, $params, $headers, $options);
+
     public static function head($url, $params, $headers, $options);
 
     public static function delete($url, $params, $headers, $options);
+
+    public static function request($method, $url, $options);
 }

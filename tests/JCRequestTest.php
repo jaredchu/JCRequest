@@ -23,7 +23,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         ];
         $this->headers = [
             'User-Agent' => 'Jared Chu',
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
         ];
     }
 
@@ -35,7 +35,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
         $this->assertNotEmpty($response->body());
 
-        $responseData = json_decode($response->body());
+        $responseData = $response->json();
         $this->assertEquals('https://httpbin.org/get?a=1&b=2&c=3', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->args->b);
@@ -52,7 +52,8 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $response = JCRequest::post($url, $this->params, $this->headers);
         $this->assertEquals(200, $response->status());
 
-        $responseData = json_decode($response->body());
+        $responseData = $response->json();
+        var_dump($responseData);
         $this->assertEquals('https://httpbin.org/post?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
@@ -69,7 +70,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $response = JCRequest::put($url, $this->params, $this->headers);
         $this->assertEquals(200, $response->status());
 
-        $responseData = json_decode($response->body());
+        $responseData = $response->json();
         $this->assertEquals('https://httpbin.org/put?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
@@ -86,7 +87,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $response = JCRequest::patch($url, $this->params, $this->headers);
         $this->assertEquals(200, $response->status());
 
-        $responseData = json_decode($response->body());
+        $responseData = $response->json();
         $this->assertEquals('https://httpbin.org/patch?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
@@ -103,7 +104,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $response = JCRequest::delete($url, $this->params, $this->headers);
         $this->assertEquals(200, $response->status());
 
-        $responseData = json_decode($response->body());
+        $responseData = $response->json();
         $this->assertEquals('https://httpbin.org/delete?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);

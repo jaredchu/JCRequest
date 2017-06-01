@@ -10,6 +10,7 @@ namespace JC;
 
 
 use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp;
 
 class JCResponse implements iJCResponse
 {
@@ -48,5 +49,10 @@ class JCResponse implements iJCResponse
     public function headers()
     {
         return $this->response->getHeaders();
+    }
+
+    public function json()
+    {
+        return GuzzleHttp\json_decode($this->body());
     }
 }

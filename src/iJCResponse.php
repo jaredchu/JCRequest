@@ -16,4 +16,6 @@ interface iJCResponse
     public function body();
 
     public function headers();
+
+    public function json();
 }

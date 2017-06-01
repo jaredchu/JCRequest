@@ -33,6 +33,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
 
         $response = JCRequest::get($url, $this->params, $this->headers);
         $this->assertEquals(200, $response->status());
+        $this->assertNotEmpty($response->body());
 
         $responseData = json_decode($response->body());
         $this->assertEquals('https://httpbin.org/get?a=1&b=2&c=3', $responseData->url);

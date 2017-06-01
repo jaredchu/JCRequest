@@ -17,6 +17,15 @@ class JCRequest implements iJCRequest
 {
     public static function request($method, $url, $options)
     {
+        if (isset($options['headers']['Content-Type']) &&
+            strpos($options['headers']['Content-Type'], 'application/json') !== false
+        ) {
+            if (isset($options['form_params'])) {
+                $options['json'] = $options['form_params'];
+                unset($options['form_params']);
+            }
+        }
+
         return new JCResponse((new Client())->request($method, $url, $options));
     }
 

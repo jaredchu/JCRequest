@@ -20,12 +20,18 @@ class JCResponse implements iJCResponse
     public $response;
 
     /**
+     * @var string
+     */
+    protected $body;
+
+    /**
      * JCResponse constructor.
      * @param $response
      */
     public function __construct($response)
     {
         $this->response = $response;
+        $this->body = $this->response->getBody()->getContents();
     }
 
 
@@ -36,7 +42,7 @@ class JCResponse implements iJCResponse
 
     public function body()
     {
-        return $this->response->getBody()->getContents();
+        return $this->body;
     }
 
     public function headers()

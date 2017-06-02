@@ -41,7 +41,7 @@ class JCRequest implements iJCRequest
      */
     public static function get($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::GET, static::manipulateUrl($url, $params), [
+        return static::request(Method::GET, is_array($params) ? static::manipulateUrl($url, $params) : $url, [
             'headers' => $headers
         ]);
     }

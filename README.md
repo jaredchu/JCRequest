@@ -29,7 +29,7 @@ var_dump($response->json());
 ```
 ## RESTful
 ```PHP
-$response = JCRequest::post($url, json_encode($this->params), $this->headers);
+$response = JCRequest::post($url, json_encode($params), $headers);
 var_dump($response->json());
 ```
 

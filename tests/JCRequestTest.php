@@ -32,10 +32,8 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $url = $this->baseUrl;
         $response = JCRequest::get($url);
         $this->assertEquals(200, $response->status());
-    }
 
-    public function testGetWithParams()
-    {
+        //test get with params
         $url = $this->baseUrl . '/get?a=1';
 
         $response = JCRequest::get($url, $this->params, $this->headers);

@@ -145,7 +145,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $responseData = $response->json();
         $this->assertEquals('https://httpbin.org/post?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
-        $this->assertEquals('{"b":2,"c":"3"}', json_decode($responseData->data));
+        $this->assertEquals('{"b":2,"c":"3"}', $responseData->data);
 
         $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
         $this->assertEquals('application/json', $responseData->headers->{'Accept'});

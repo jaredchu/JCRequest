@@ -25,7 +25,7 @@ class JCRequest implements iJCRequest
                 $options['form_params'] = $params;
             }
             if (is_string($params)) {
-                $options['json'] = $params;
+                $options['json'] = json_decode($params);
             }
         }
 

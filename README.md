@@ -13,21 +13,21 @@ Another Guzzle wrapper
 
 ## Usage
 
-### GET
+#### GET
 ```PHP
 $response = JCRequest::get($url);
 echo $response->status();
 echo $response->body();
 var_dump($response->json());
 ```
-### POST
+#### POST
 ```PHP
 $response = JCRequest::post($url, $params, $headers);
 echo $response->status();
 echo $response->body();
 var_dump($response->json());
 ```
-## RESTful
+#### RESTful API
 ```PHP
 $response = JCRequest::post($url, json_encode($params), $headers);
 var_dump($response->json());

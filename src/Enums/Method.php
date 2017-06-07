@@ -9,6 +9,10 @@
 
 namespace JC\Enums;
 
+/**
+ * Class Method
+ * @package JC\Enums
+ */
 class Method
 {
     const GET = 'GET';

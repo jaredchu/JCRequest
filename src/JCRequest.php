@@ -32,13 +32,6 @@ class JCRequest implements iJCRequest
         return new JCResponse((new Client())->request($method, $url, $options));
     }
 
-    /**
-     * @param $url
-     * @param array $headers
-     * @param array $params
-     * @param array $options
-     * @return JCResponse
-     */
     public static function get($url, $params = null, $headers = [], $options = [])
     {
         return static::request(Method::GET, is_array($params) ? static::manipulateUrl($url, $params) : $url, [
@@ -86,6 +79,8 @@ class JCRequest implements iJCRequest
     }
 
     /**
+     * Manipulate the url & params for GET request
+     *
      * @param string $url
      * @param array $params
      * @return string

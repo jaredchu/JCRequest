@@ -12,7 +12,26 @@ Another Guzzle wrapper
 `$ composer require jaredchu/jc-request`
 
 ## Usage
-Updating
+
+#### GET
+```PHP
+$response = JCRequest::get($url);
+echo $response->status();
+echo $response->body();
+var_dump($response->json());
+```
+#### POST
+```PHP
+$response = JCRequest::post($url, $params, $headers);
+echo $response->status();
+echo $response->body();
+var_dump($response->json());
+```
+#### RESTful API
+```PHP
+$response = JCRequest::post($url, json_encode($params), $headers);
+var_dump($response->json());
+```
 
 ## Contributing
 1. Fork it!

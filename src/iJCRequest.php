@@ -53,7 +53,6 @@ interface iJCRequest
 
     /**
      * @var string $url
-     * @var array|string $params
      * @var array $headers
      * @var array $options
      * @return iJCResponse
@@ -72,8 +71,8 @@ interface iJCRequest
     /**
      * @var string $method
      * @var string $url
-     * @var array $options
+     * @var array $guzzleOptions
      * @return iJCResponse
      */
-    public static function request($method, $url, $options);
+    public static function request($method, $url, $guzzleOptions);
 }

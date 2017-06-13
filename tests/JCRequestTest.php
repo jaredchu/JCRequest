@@ -122,7 +122,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
     {
         $url = $this->baseUrl . '/headers';
 
-        $response = JCRequest::head($url, $this->params, $this->headers);
+        $response = JCRequest::head($url, $this->headers);
         $this->assertEquals(200, $response->status());
         $this->assertEmpty($response->body());
 

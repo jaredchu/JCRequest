@@ -71,7 +71,7 @@ class JCRequest implements iJCRequest
         ]);
     }
 
-    public static function head($url, $params = null, $headers = [], $options = [])
+    public static function head($url, $headers = [], $options = [])
     {
         return static::request(Method::HEAD, $url, [
             'headers' => $headers,

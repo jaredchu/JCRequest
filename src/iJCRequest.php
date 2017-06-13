@@ -58,7 +58,7 @@ interface iJCRequest
      * @var array $options
      * @return iJCResponse
      */
-    public static function head($url, $params, $headers, $options);
+    public static function head($url, $headers, $options);
 
     /**
      * @var string $url

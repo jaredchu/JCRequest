@@ -27,7 +27,7 @@ echo $response->status();
 echo $response->body();
 var_dump($response->json());
 ```
-#### RESTful API
+#### RESTful
 ```PHP
 $response = JCRequest::post($url, json_encode($params), $headers);
 var_dump($response->json());

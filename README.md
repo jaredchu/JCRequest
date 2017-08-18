@@ -5,7 +5,7 @@ Another Guzzle wrapper
 [![Packagist](https://img.shields.io/packagist/dt/jaredchu/jc-request.svg)](https://packagist.org/packages/jaredchu/jc-request)
 [![Travis](https://img.shields.io/travis/jaredchu/JCRequest.svg)](https://travis-ci.org/jaredchu/JCRequest)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/jaredchu/JCRequest.svg)](https://scrutinizer-ci.com/g/jaredchu/JCRequest/)
-[![Scrutinizer branch](https://img.shields.io/scrutinizer/coverage/g/jaredchu/JCRequest/master.svg)](https://scrutinizer-ci.com/g/jaredchu/JCRequest/)
+[![Codecov](https://img.shields.io/codecov/c/github/jaredchu/JCRequest.svg)](https://codecov.io/gh/jaredchu/JCRequest)
 [![Packagist](https://img.shields.io/packagist/l/jaredchu/jc-request.svg)](https://packagist.org/packages/jaredchu/jc-request)
 
 ## Installation

@@ -10,6 +10,7 @@ namespace JC;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use JC\Enums\Method;
 use Purl\Url;
 
@@ -17,7 +18,12 @@ class JCRequest implements iJCRequest
 {
     public static function request($method, $url, $guzzleOptions)
     {
-        return new JCResponse((new Client())->request($method, $url, static::combineParams($guzzleOptions)));
+        $client = new Client();
+        try {
+            return new JCResponse($client->request($method, $url, static::combineParams($guzzleOptions)));
+        } catch (RequestException $exception) {
+            return new JCResponse($exception->getResponse());
+        }
     }
 
     public static function get($url, $params = null, $headers = [], $options = [])

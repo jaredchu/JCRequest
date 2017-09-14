@@ -10,19 +10,19 @@ namespace JC;
 
 
 use GuzzleHttp\Client;
-use Purl\Url;
 use JC\Enums\Method;
+use Purl\Url;
 
 class JCRequest implements iJCRequest
 {
     public static function request($method, $url, $guzzleOptions)
     {
-        return new JCResponse((new Client())->request($method, $url, static::manipulateParams($guzzleOptions)));
+        return new JCResponse((new Client())->request($method, $url, static::combineParams($guzzleOptions)));
     }
 
     public static function get($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::GET, is_array($params) ? static::manipulateUrl($url, $params) : $url, [
+        return static::request(Method::GET, is_array($params) ? static::combineUrl($url, $params) : $url, [
             'headers' => $headers
         ]);
     }
@@ -73,7 +73,7 @@ class JCRequest implements iJCRequest
      * @param array $params
      * @return string
      */
-    protected static function manipulateUrl($url, $params = [])
+    protected static function combineUrl($url, $params = [])
     {
         $urlObject = Url::parse($url);
         $queryData = array_merge($urlObject->query->getData(), $params);
@@ -86,7 +86,7 @@ class JCRequest implements iJCRequest
      * @param array $guzzleOptions
      * @return array
      */
-    protected static function manipulateParams($guzzleOptions)
+    protected static function combineParams($guzzleOptions)
     {
         if (isset($guzzleOptions['params'])) {
             $params = $guzzleOptions['params'];
@@ -94,16 +94,27 @@ class JCRequest implements iJCRequest
 
             if (is_array($params)) {
                 $guzzleOptions['form_params'] = $params;
+            } elseif (is_string($params) && $jsonObject = self::jsonDecode($params)) {
+                $guzzleOptions['json'] = $jsonObject;
             } else {
-                $jsonObject = json_decode($params);
-                if (json_last_error() == JSON_ERROR_NONE) {
-                    $guzzleOptions['json'] = $jsonObject;
-                } else {
-                    $guzzleOptions['body'] = $params;
-                }
+                $guzzleOptions['body'] = $params;
             }
         }
 
         return $guzzleOptions;
+    }
+
+    /**
+     * @param $string
+     * @return bool|mixed
+     */
+    private static function jsonDecode($string)
+    {
+        $jsonObject = json_decode($string);
+        if (json_last_error() == JSON_ERROR_NONE) {
+            return $jsonObject;
+        } else {
+            return false;
+        }
     }
 }

@@ -7,6 +7,7 @@ Another Guzzle wrapper
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/jaredchu/JCRequest.svg)](https://scrutinizer-ci.com/g/jaredchu/JCRequest/)
 [![Codecov](https://img.shields.io/codecov/c/github/jaredchu/JCRequest.svg)](https://codecov.io/gh/jaredchu/JCRequest)
 [![Packagist](https://img.shields.io/packagist/l/jaredchu/jc-request.svg)](https://packagist.org/packages/jaredchu/jc-request)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fjaredchu%2FJCRequest.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fjaredchu%2FJCRequest?ref=badge_shield)
 
 ## Installation
 `$ composer require jaredchu/jc-request`
@@ -42,3 +43,6 @@ var_dump($response->json());
 
 ## License
 [MIT License](https://github.com/jaredchu/JCRequest/blob/master/LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fjaredchu%2FJCRequest.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fjaredchu%2FJCRequest?ref=badge_large)

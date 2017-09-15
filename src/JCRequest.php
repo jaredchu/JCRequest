@@ -18,9 +18,8 @@ class JCRequest implements JCRequestInterface
 {
     public static function request($method, $url, $guzzleOptions)
     {
-        $client = new Client();
         try {
-            return new JCResponse($client->request($method, $url, static::combineParams($guzzleOptions)));
+            return new JCResponse((new Client())->request($method, $url, static::combineParams($guzzleOptions)));
         } catch (RequestException $exception) {
             return new JCResponse($exception->getResponse());
         }
@@ -90,7 +89,7 @@ class JCRequest implements JCRequestInterface
 
             if (is_array($params)) {
                 $guzzleOptions['form_params'] = $params;
-            } elseif (is_string($params) && $jsonObject = self::jsonDecode($params)) {
+            } elseif (is_string($params) && $jsonObject = static::jsonDecode($params)) {
                 $guzzleOptions['json'] = $jsonObject;
             } else {
                 $guzzleOptions['body'] = $params;

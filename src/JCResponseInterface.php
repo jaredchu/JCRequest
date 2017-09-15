@@ -13,25 +13,25 @@ namespace JC;
  * Interface iJCResponse
  * @package JC
  */
-interface iJCResponse
+interface JCResponseInterface
 {
     /**
-     * @return integer
+     * @return integer|bool
      */
     public function status();
 
     /**
-     * @return string
+     * @return string|null
      */
     public function body();
 
     /**
-     * @return array
+     * @return array|null
      */
     public function headers();
 
     /**
-     * @return object
+     * @return object|null
      */
     public function json();
 

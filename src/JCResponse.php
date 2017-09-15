@@ -9,10 +9,10 @@
 namespace JC;
 
 
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp;
+use Psr\Http\Message\ResponseInterface;
 
-class JCResponse implements iJCResponse
+class JCResponse implements JCResponseInterface
 {
 
     /**
@@ -31,14 +31,19 @@ class JCResponse implements iJCResponse
      */
     public function __construct($response)
     {
-        $this->response = $response;
-        $this->body = $this->response->getBody()->getContents();
+        if ($response) {
+            $this->response = $response;
+            $this->body = $this->response->getBody()->getContents();
+        }
     }
-
 
     public function status()
     {
-        return $this->response->getStatusCode();
+        if ($this->hasResponse()) {
+            return $this->response->getStatusCode();
+        } else {
+            return false;
+        }
     }
 
     public function body()
@@ -48,16 +53,33 @@ class JCResponse implements iJCResponse
 
     public function headers()
     {
-        return $this->response->getHeaders();
+        if ($this->hasResponse()) {
+            return $this->response->getHeaders();
+        } else {
+            return null;
+        }
     }
 
     public function json()
     {
-        return GuzzleHttp\json_decode($this->body());
+        if ($this->hasResponse()) {
+            return GuzzleHttp\json_decode($this->body());
+        } else {
+            return null;
+        }
     }
 
     public function success()
     {
-        return $this->response->getStatusCode() < 300;
+        if ($this->hasResponse()) {
+            return $this->response->getStatusCode() < 300;
+        } else {
+            return false;
+        }
+    }
+
+    protected function hasResponse()
+    {
+        return !is_null($this->response);
     }
 }

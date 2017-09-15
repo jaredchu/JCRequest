@@ -13,14 +13,14 @@ namespace JC;
  * Interface iJCRequest
  * @package JC
  */
-interface iJCRequest
+interface JCRequestInterface
 {
     /**
      * @var string $url
      * @var array|string $params
      * @var array $headers
      * @var array $options
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function get($url, $params, $headers, $options);
 
@@ -29,7 +29,7 @@ interface iJCRequest
      * @var array|string $params
      * @var array $headers
      * @var array $options
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function post($url, $params, $headers, $options);
 
@@ -38,7 +38,7 @@ interface iJCRequest
      * @var array|string $params
      * @var array $headers
      * @var array $options
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function put($url, $params, $headers, $options);
 
@@ -47,7 +47,7 @@ interface iJCRequest
      * @var array|string $params
      * @var array $headers
      * @var array $options
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function patch($url, $params, $headers, $options);
 
@@ -55,7 +55,7 @@ interface iJCRequest
      * @var string $url
      * @var array $headers
      * @var array $options
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function head($url, $headers, $options);
 
@@ -64,7 +64,7 @@ interface iJCRequest
      * @var array|string $params
      * @var array $headers
      * @var array $options
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function delete($url, $params, $headers, $options);
 
@@ -72,7 +72,7 @@ interface iJCRequest
      * @var string $method
      * @var string $url
      * @var array $guzzleOptions
-     * @return iJCResponse
+     * @return JCResponseInterface
      */
     public static function request($method, $url, $guzzleOptions);
 }

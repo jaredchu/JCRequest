@@ -170,4 +170,15 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(200, $response->status());
     }
+
+    public function testRequestTimeout()
+    {
+        $url = $this->baseUrl . '/delay/3';
+        $response = JCRequest::get($url, [], [], [
+            'connect_timeout' => 2,
+            'timeout' => 2
+        ]);
+
+        $this->assertFalse($response->success());
+    }
 }

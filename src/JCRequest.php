@@ -14,7 +14,7 @@ use GuzzleHttp\Exception\RequestException;
 use JC\Enums\Method;
 use Purl\Url;
 
-class JCRequest implements iJCRequest
+class JCRequest implements JCRequestInterface
 {
     public static function request($method, $url, $guzzleOptions)
     {

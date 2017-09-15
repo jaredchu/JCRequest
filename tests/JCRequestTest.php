@@ -37,6 +37,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $url = $this->baseUrl . '/get?a=1';
 
         $response = JCRequest::get($url, $this->params, $this->headers);
+        $this->assertTrue($response->success());
         $this->assertEquals(200, $response->status());
         $this->assertNotEmpty($response->body());
 
@@ -149,6 +150,20 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('application/json', $responseData->headers->{'Accept'});
     }
 
+    public function testRequestRaw()
+    {
+        $url = $this->baseUrl . '/post';
+        $data = 'raw body';
+        $response = JCRequest::post($url, $data, $this->headers);
+
+        $responseData = $response->json();
+        $this->assertEquals('https://httpbin.org/post', $responseData->url);
+        $this->assertEquals($data, $responseData->data);
+
+        $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});
+        $this->assertEquals('application/json', $responseData->headers->{'Accept'});
+    }
+
     public function testStatusCode()
     {
         $this->assertEquals(200, JCRequest::get($this->baseUrl . '/status/200')->status());
@@ -180,5 +195,8 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         ]);
 
         $this->assertFalse($response->success());
+        $this->assertFalse($response->status());
+        $this->assertNull($response->headers());
+        $this->assertNull($response->json());
     }
 }

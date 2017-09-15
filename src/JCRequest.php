@@ -28,48 +28,38 @@ class JCRequest implements iJCRequest
 
     public static function get($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::GET, is_array($params) ? static::combineUrl($url, $params) : $url, [
-            'headers' => $headers
-        ]);
+        return static::request(Method::GET, is_array($params) ? static::combineUrl($url, $params) : $url,
+            array_merge(['headers' => $headers], $options));
     }
 
     public static function post($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::POST, $url, [
-            'headers' => $headers,
-            'params' => $params
-        ]);
+        return static::request(Method::POST, $url,
+            array_merge(['headers' => $headers, 'params' => $params], $options));
     }
 
     public static function put($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::PUT, $url, [
-            'headers' => $headers,
-            'params' => $params
-        ]);
+        return static::request(Method::PUT, $url,
+            array_merge(['headers' => $headers, 'params' => $params], $options));
     }
 
     public static function patch($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::PATCH, $url, [
-            'headers' => $headers,
-            'params' => $params
-        ]);
+        return static::request(Method::PATCH, $url,
+            array_merge(['headers' => $headers, 'params' => $params], $options));
     }
 
     public static function delete($url, $params = null, $headers = [], $options = [])
     {
-        return static::request(Method::DELETE, $url, [
-            'headers' => $headers,
-            'params' => $params
-        ]);
+        return static::request(Method::DELETE, $url,
+            array_merge(['headers' => $headers, 'params' => $params], $options));
     }
 
     public static function head($url, $headers = [], $options = [])
     {
-        return static::request(Method::HEAD, $url, [
-            'headers' => $headers,
-        ]);
+        return static::request(Method::HEAD, $url,
+            array_merge(['headers' => $headers], $options));
     }
 
     /**

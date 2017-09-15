@@ -33,6 +33,19 @@ var_dump($response->json());
 $response = JCRequest::post($url, json_encode($params), $headers);
 var_dump($response->json());
 ```
+### Basic Auth
+```PHP
+$response = JCRequest::get($url, $params, $headers, [
+  'auth' => [$userName, $passwd]
+]);
+```
+### Request timeout
+```PHP
+$response = JCRequest::get($url, $params, $headers, [
+  'connect_timeout' => 2,
+  'timeout' => 2
+]);
+```
 
 ## Contributing
 1. Fork it!

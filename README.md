@@ -13,6 +13,9 @@ Another Guzzle wrapper
 `$ composer require jaredchu/jc-request`
 
 ## Usage
+```PHP
+use JC\HttpClient\JCRequest;
+```
 
 #### GET
 ```PHP

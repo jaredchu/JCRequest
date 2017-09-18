@@ -7,7 +7,7 @@
  * Time: 10:14
  */
 
-use JC\JCRequest;
+use JC\HttpClient\JCRequest;
 
 class JCRequestTest extends PHPUnit_Framework_TestCase
 {

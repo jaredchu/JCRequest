@@ -7,7 +7,7 @@
  * Time: 13:43
  */
 
-namespace JC\Enums;
+namespace JC\HttpClient\Enums;
 
 /**
  * Class Method

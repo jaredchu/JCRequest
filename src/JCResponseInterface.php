@@ -6,7 +6,7 @@
  * Time: 10:23
  */
 
-namespace JC;
+namespace JC\HttpClient;
 
 
 /**

@@ -6,12 +6,12 @@
  * Time: 09:40
  */
 
-namespace JC;
+namespace JC\HttpClient;
 
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use JC\Enums\Method;
+use JC\HttpClient\Enums\Method;
 use Purl\Url;
 
 class JCRequest implements JCRequestInterface

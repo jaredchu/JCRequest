@@ -6,7 +6,7 @@
  * Time: 09:50
  */
 
-namespace JC;
+namespace JC\HttpClient;
 
 
 use GuzzleHttp;

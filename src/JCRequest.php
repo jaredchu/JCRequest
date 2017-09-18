@@ -16,10 +16,10 @@ use Purl\Url;
 
 class JCRequest implements JCRequestInterface
 {
-    public static function request($method, $url, $guzzleOptions)
+    public static function request($method, $url, $clientOptions)
     {
         try {
-            return new JCResponse((new Client())->request($method, $url, static::combineParams($guzzleOptions)));
+            return new JCResponse((new Client())->request($method, $url, static::combineParams($clientOptions)));
         } catch (RequestException $exception) {
             return new JCResponse($exception->getResponse());
         }

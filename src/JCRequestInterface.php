@@ -22,7 +22,7 @@ interface JCRequestInterface
      * @var array $options
      * @return JCResponseInterface
      */
-    public static function get($url, $params, $headers, $options);
+    public static function get($url, $params, $headers, $options = []);
 
     /**
      * @var string $url
@@ -31,7 +31,7 @@ interface JCRequestInterface
      * @var array $options
      * @return JCResponseInterface
      */
-    public static function post($url, $params, $headers, $options);
+    public static function post($url, $params, $headers, $options = []);
 
     /**
      * @var string $url
@@ -40,7 +40,7 @@ interface JCRequestInterface
      * @var array $options
      * @return JCResponseInterface
      */
-    public static function put($url, $params, $headers, $options);
+    public static function put($url, $params, $headers, $options = []);
 
     /**
      * @var string $url
@@ -49,7 +49,7 @@ interface JCRequestInterface
      * @var array $options
      * @return JCResponseInterface
      */
-    public static function patch($url, $params, $headers, $options);
+    public static function patch($url, $params, $headers, $options = []);
 
     /**
      * @var string $url
@@ -57,7 +57,7 @@ interface JCRequestInterface
      * @var array $options
      * @return JCResponseInterface
      */
-    public static function head($url, $headers, $options);
+    public static function head($url, $headers, $options = []);
 
     /**
      * @var string $url
@@ -66,13 +66,13 @@ interface JCRequestInterface
      * @var array $options
      * @return JCResponseInterface
      */
-    public static function delete($url, $params, $headers, $options);
+    public static function delete($url, $params, $headers, $options = []);
 
     /**
      * @var string $method
      * @var string $url
-     * @var array $guzzleOptions
+     * @var array $clientOptions
      * @return JCResponseInterface
      */
-    public static function request($method, $url, $guzzleOptions);
+    public static function request($method, $url, $clientOptions);
 }

@@ -11,7 +11,7 @@ use JC\HttpClient\JCRequest;
 
 class JCRequestTest extends PHPUnit_Framework_TestCase
 {
-    private $baseUrl = 'https://httpbin.org';
+    private $baseUrl = 'https://httpbin-mirror.herokuapp.com';
     private $params;
     private $headers;
 
@@ -42,7 +42,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($response->body());
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/get?a=1&b=2&c=3', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/get?a=1&b=2&c=3', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->args->b);
         $this->assertEquals(3, $responseData->args->c);
@@ -59,7 +59,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/post?a=1', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/post?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
         $this->assertEquals(3, $responseData->form->c);
@@ -76,7 +76,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/put?a=1', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/put?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
         $this->assertEquals(3, $responseData->form->c);
@@ -93,7 +93,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/patch?a=1', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/patch?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
         $this->assertEquals(3, $responseData->form->c);
@@ -110,7 +110,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/delete?a=1', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/delete?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals(2, $responseData->form->b);
         $this->assertEquals(3, $responseData->form->c);
@@ -126,12 +126,6 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $response = JCRequest::head($url, $this->headers);
         $this->assertEquals(200, $response->status());
         $this->assertEmpty($response->body());
-
-        $responseHeaders = $response->headers();
-        $this->assertEquals('keep-alive', $responseHeaders['Connection'][0]);
-        $this->assertEquals('application/json', $responseHeaders['Content-Type'][0]);
-        $this->assertEquals('Flask', $responseHeaders['X-Powered-By'][0]);
-        $this->assertEquals(144, $responseHeaders['Content-Length'][0]);
     }
 
     public function testJson()
@@ -142,7 +136,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->status());
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/post?a=1', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/post?a=1', $responseData->url);
         $this->assertEquals(1, $responseData->args->a);
         $this->assertEquals('{"b":2,"c":"3"}', $responseData->data);
 
@@ -157,7 +151,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $response = JCRequest::post($url, $data, $this->headers);
 
         $responseData = $response->json();
-        $this->assertEquals('https://httpbin.org/post', $responseData->url);
+        $this->assertEquals($this->baseUrl.'/post', $responseData->url);
         $this->assertEquals($data, $responseData->data);
 
         $this->assertEquals('Jared Chu', $responseData->headers->{'User-Agent'});

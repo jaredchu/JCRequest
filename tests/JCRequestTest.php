@@ -11,7 +11,7 @@ use JC\HttpClient\JCRequest;
 
 class JCRequestTest extends PHPUnit_Framework_TestCase
 {
-    private $baseUrl = 'https://httpbin-mirror.herokuapp.com';
+    private $baseUrl = 'https://httpbin.org';
     private $params;
     private $headers;
 

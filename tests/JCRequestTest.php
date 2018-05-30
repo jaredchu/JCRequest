@@ -164,7 +164,7 @@ class JCRequestTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(300, JCRequest::get($this->baseUrl . '/status/300')->status());
         $this->assertEquals(400, JCRequest::get($this->baseUrl . '/status/400')->status());
         $this->assertEquals(500, JCRequest::get($this->baseUrl . '/status/500')->status());
-        $this->assertEquals(503, JCRequest::get($this->baseUrl . '/status/100')->status());
+        $this->assertEquals(503, JCRequest::get($this->baseUrl . '/status/503')->status());
     }
 
     public function testBasicAuth()
